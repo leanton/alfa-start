@@ -1,2 +1,2 @@
 rootProject.name = 'api'
-include ":conversions-api", ":transfers-api"
+include ":rates-api", ":transfers-api", "accounts-api"
