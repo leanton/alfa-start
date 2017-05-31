@@ -1,6 +1,6 @@
 package me.antonle.alfastart
 
-import me.antonle.alfastart.transfers.AccountsApplication
+import me.antonle.alfastart.accounts.AccountsApplication
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ContextConfiguration

@@ -18,8 +18,9 @@ subprojects {
 
 	apply plugin: 'java'
 	apply plugin: 'groovy'
+    apply plugin: 'org.springframework.boot'
 
-	sourceCompatibility = 1.8
+    sourceCompatibility = 1.8
 	targetCompatibility = 1.8
 
 	repositories {
@@ -27,6 +28,10 @@ subprojects {
     }
 
 	dependencies {
+        compile("org.projectlombok:lombok:1.16.16")
+
+        compile('com.github.briandilley.jsonrpc4j:jsonrpc4j:1.4.6')
+
 		testCompile('org.spockframework:spock-core:1.0-groovy-2.4')
 		testCompile('org.awaitility:awaitility-groovy:2.0.0')
 		testCompile('org.springframework.boot:spring-boot-starter-test')

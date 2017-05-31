@@ -1,6 +1,6 @@
-package me.antonle.alfastart.transfers.repository;
+package me.antonle.alfastart.accounts.repository;
 
-import me.antonle.alfastart.transfers.entity.Account;
+import me.antonle.alfastart.common.entity.Account;
 import org.springframework.data.repository.CrudRepository;
 
 public interface AccountRepository extends CrudRepository<Account, Long> {

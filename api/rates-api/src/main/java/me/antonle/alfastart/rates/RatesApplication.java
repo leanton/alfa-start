@@ -1,12 +1,12 @@
-package me.antonle.alfastart.conversions;
+package me.antonle.alfastart.rates;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ConversionsApplication {
+public class RatesApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ConversionsApplication.class, args);
+		SpringApplication.run(RatesApplication.class, args);
 	}
 }

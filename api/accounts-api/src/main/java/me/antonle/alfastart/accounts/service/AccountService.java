@@ -1,7 +1,7 @@
-package me.antonle.alfastart.transfers.service;
+package me.antonle.alfastart.accounts.service;
 
-import me.antonle.alfastart.transfers.entity.Account;
-import me.antonle.alfastart.transfers.repository.AccountRepository;
+import me.antonle.alfastart.common.entity.Account;
+import me.antonle.alfastart.accounts.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

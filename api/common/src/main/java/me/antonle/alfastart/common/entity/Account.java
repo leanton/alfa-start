@@ -1,7 +1,7 @@
-package me.antonle.alfastart.transfers.entity;
+package me.antonle.alfastart.common.entity;
 
 import lombok.Data;
-import me.antonle.alfastart.domain.Ccy;
+import me.antonle.alfastart.common.domain.Ccy;
 
 import javax.persistence.*;
 import java.io.Serializable;

@@ -1,4 +1,4 @@
-package me.antonle.alfastart.domain;
+package me.antonle.alfastart.common.domain;
 
 public enum Ccy {
     EUR,
