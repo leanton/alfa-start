@@ -2,6 +2,7 @@ package me.antonle.alfastart.config
 
 import com.googlecode.jsonrpc4j.JsonRpcHttpClient
 import com.googlecode.jsonrpc4j.ProxyUtil
+import me.antonle.alfastart.common.Routes
 import me.antonle.alfastart.common.api.AccountAPI
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.beans.factory.annotation.Value
@@ -22,7 +23,7 @@ class SpockTestConfig {
         //You can add authentication headers etc to this map
         Map<String, String> map = new HashMap<>()
         try {
-            url = new URL("http://localhost:$port/api/accout")
+            url = new URL("http://localhost:$port" + Routes.ACCOUNTS_API)
         } catch (Exception e) {
             System.out.println(e.getMessage())
         }

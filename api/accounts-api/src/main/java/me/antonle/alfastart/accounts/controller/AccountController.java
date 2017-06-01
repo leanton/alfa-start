@@ -22,10 +22,10 @@ public class AccountController implements AccountAPI {
     private AccountRepository accountRepository;
 
     @Override
-    public Account create(String accountName, String ccy) {
+    public Account create(String accountName, Ccy ccy) {
         Account account = new Account();
         account.setName(accountName);
-        account.setCcy(Ccy.findByName(ccy).getName());
+        account.setCcy(ccy);
         account.setBalance(BigDecimal.ZERO);
         return accountRepository.save(account);
     }
@@ -38,10 +38,5 @@ public class AccountController implements AccountAPI {
     @Override
     public Account deposit(Long accountId, BigDecimal depositAmt) {
         return accountService.deposit(accountId, depositAmt);
-    }
-
-    @Override
-    public String test(String testString) {
-        return testString;
     }
 }

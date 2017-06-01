@@ -2,59 +2,59 @@ package me.antonle.alfastart
 
 import me.antonle.alfastart.common.api.AccountAPI
 import me.antonle.alfastart.common.domain.Ccy
-import spock.lang.Ignore
+import me.antonle.alfastart.common.entity.Account
+import spock.lang.Shared
+import spock.lang.Stepwise
 
 import javax.annotation.Resource
 
-// todo: I HAVE NO IDEA WHY IT IS NOT WORKING!
+@Stepwise
 class AccountAPITest extends SpringBootBaseSpec {
 
     @Resource(name = "accountAPI")
     AccountAPI accountAPI
 
-    @Ignore
+    @Shared
+    private Account account
+
     def "Should create account successfully"() {
         when:
-        def account = accountAPI.create(accountName, ccy.getName())
+        account = accountAPI.create(accountName, ccy)
 
         then:
-        account != null
-        account.accountID > 0
-        account.name == accountName
-        account.balance == 0
-        account.ccy == ccy
+        this.account != null
+        this.account.accountID > 0
+        this.account.name == accountName
+        this.account.balance == 0
+        this.account.getCcy() == ccy
 
         where:
-        accountName          | ccy
-        "Test ruble account" | Ccy.RUB
-        "Test USD account"   | Ccy.USD
-        "Test RUB account"   | Ccy.EUR
+        accountName        | ccy
+        "Test RUB account" | Ccy.RUB
+        "Test USD account" | Ccy.USD
+        "Test EUR account" | Ccy.EUR
 
     }
 
-    @Ignore
     def "Should get account successfully"() {
         when:
-        def account = accountAPI.get(1)
+        def account = accountAPI.get(account.getAccountID())
 
         then:
         account != null
         account.accountID > 0
         account.balance >= 0
-
+        account.ccy == Ccy.EUR
 
     }
 
-    @Ignore
-    def "Should test account successfully"() {
+    def "Should deposit money successfully"() {
         when:
-        def actualString = accountAPI.test(expectedString)
+        def account = accountAPI.deposit(account.getAccountID(), BigDecimal.TEN)
 
         then:
-        actualString == expectedString
-
-        where:
-        expectedString = "one"
+        account != null
+        account.balance == BigDecimal.TEN
     }
 
 }

@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum Ccy {
-    EUR("RUB"),
+    EUR("EUR"),
     USD("USD"),
     RUB("RUB");
 
