@@ -1,7 +1,6 @@
 package me.antonle.alfastart.common.entity;
 
 import lombok.Data;
-import me.antonle.alfastart.common.domain.Ccy;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -24,8 +23,7 @@ public class Account implements Serializable {
     private BigDecimal balance;
 
     @Column(name = "CCY")
-    @Enumerated(EnumType.STRING)
-    private Ccy ccy;
+    private String ccy;
 
     public Account() {
     }

@@ -15,8 +15,9 @@ public class AccountService {
     private AccountRepository accountRepository;
 
     @Transactional
-    public void deposit(Long accountID, BigDecimal depositAmout) {
+    public Account deposit(Long accountID, BigDecimal depositAmout) {
         Account account = accountRepository.findOne(accountID);
         account.setBalance(account.getBalance().add(depositAmout));
+        return account;
     }
 }
