@@ -11,7 +11,7 @@ import javax.annotation.Resource
 
 @Stepwise
 @Unroll
-class AccountAPITest extends SpringBootBaseSpec {
+class AccountAPITest extends AccountsBaseSpec {
 
     @Resource(name = "accountAPI")
     AccountAPI accountAPI
