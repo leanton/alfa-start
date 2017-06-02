@@ -19,9 +19,16 @@ public interface AccountAPI {
     Account get(@JsonRpcParam("accountID") Long accountId);
 
     Account deposit(@JsonRpcParam("accountID") Long accountId,
-                    @JsonRpcParam("depositAmount")BigDecimal depositAmt);
+                    @JsonRpcParam("depositAmount") BigDecimal depositAmt);
 
     Account withdraw(@JsonRpcParam("accountID") Long accountId,
-                    @JsonRpcParam("depositAmount")BigDecimal withdrawAmt);
+                     @JsonRpcParam("depositAmount") BigDecimal withdrawAmt);
+
+    /**
+     * @return account from which the money were transferred
+     * */
+    Account transfer(@JsonRpcParam("fromAccountID") Long fromAccountId,
+                     @JsonRpcParam("toAccountID") Long toAccountId,
+                     @JsonRpcParam("depositAmount") BigDecimal amount);
 
 }

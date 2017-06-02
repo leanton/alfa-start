@@ -17,19 +17,21 @@ class AccountAPITest extends SpringBootBaseSpec {
     AccountAPI accountAPI
 
     @Shared
-    private Account account
+    private Account account1
+    @Shared
+    private Account account2
 
 
-    def "Should create account #accountName successfully"() {
+    def "Should create account `#accountName` successfully"() {
         when:
-        account = accountAPI.create(accountName, ccy)
+        account1 = accountAPI.create(accountName, ccy)
 
         then:
-        this.account != null
-        this.account.accountID > 0
-        this.account.name == accountName
-        this.account.balance == 0
-        this.account.getCcy() == ccy
+        this.account1 != null
+        this.account1.accountID > 0
+        this.account1.name == accountName
+        this.account1.balance == 0
+        this.account1.getCcy() == ccy
 
         where:
         accountName        | ccy
@@ -41,19 +43,19 @@ class AccountAPITest extends SpringBootBaseSpec {
 
     def "Should get account successfully"() {
         when:
-        def account = accountAPI.get(account.getAccountID())
+        def account = accountAPI.get(account1.getAccountID())
 
         then:
         account != null
-        account.accountID == this.account.accountID
-        account.balance == this.account.balance
-        account.ccy == this.account.ccy
+        account.accountID == this.account1.accountID
+        account.balance == this.account1.balance
+        account.ccy == this.account1.ccy
 
     }
 
     def "Should deposit #depositAmount successfully"() {
         when:
-        def account = accountAPI.deposit(account.getAccountID(), depositAmount)
+        def account = accountAPI.deposit(account1.getAccountID(), depositAmount)
 
         then:
         account != null
@@ -68,7 +70,7 @@ class AccountAPITest extends SpringBootBaseSpec {
 
     def "Should withdraw #withdrawAmount successfully"() {
         when:
-        def account = accountAPI.withdraw(account.getAccountID(), withdrawAmount)
+        def account = accountAPI.withdraw(account1.getAccountID(), withdrawAmount)
 
         then:
         account != null
@@ -81,4 +83,36 @@ class AccountAPITest extends SpringBootBaseSpec {
         25             || 70
     }
 
+    def "Should create another account `#accountName` with same ccy successfully"() {
+        when:
+        account2 = accountAPI.create(accountName, ccy)
+
+        then:
+        account2 != null
+        account2.accountID > 0
+        account2.name == accountName
+        account2.balance == 0
+        account2.getCcy() == account1.getCcy()
+
+        where:
+        accountName          | ccy
+        "Test EUR account 2" | Ccy.EUR
+    }
+
+    def "Should transfer #amount from one account to another successfully"() {
+        when:
+        account1 = accountAPI.transfer(account1.getAccountID(), account2.getAccountID(), amount)
+        account2 = accountAPI.get(account2.getAccountID())
+
+        then:
+        account1.balance == accountAmount1
+        account2.balance == accountAmount2
+
+        where:
+        amount || accountAmount1 | accountAmount2
+        20     || 50             | 20
+        10     || 40             | 30
+
+
+    }
 }

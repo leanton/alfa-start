@@ -45,4 +45,9 @@ public class AccountController implements AccountAPI {
         return accountService.withdraw(accountId, withdrawAmt);
     }
 
+    @Override
+    public Account transfer(Long fromAccountId, Long toAccountId, BigDecimal amount) {
+        return accountService.transfer(fromAccountId, toAccountId, amount);
+    }
+
 }

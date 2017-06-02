@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
+import java.util.Arrays;
 
 @Service
 public class AccountService {
@@ -30,5 +31,15 @@ public class AccountService {
         Account account = get(accountId);
         account.setBalance(account.getBalance().subtract(withdrawAmt));
         return accountRepository.save(account);
+    }
+
+    @Transactional
+    public Account transfer(Long fromAccountId, Long toAccountId, BigDecimal amount) {
+        Account fromAccount = get(fromAccountId);
+        Account toAccount = get(toAccountId);
+        fromAccount.setBalance(fromAccount.getBalance().subtract(amount));
+        toAccount.setBalance(toAccount.getBalance().add(amount));
+        accountRepository.save(Arrays.asList(fromAccount, toAccount));
+        return fromAccount;
     }
 }
