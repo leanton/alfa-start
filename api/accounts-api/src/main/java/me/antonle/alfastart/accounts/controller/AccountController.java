@@ -32,11 +32,17 @@ public class AccountController implements AccountAPI {
 
     @Override
     public Account get(Long accountId) {
-        return accountRepository.findOne(accountId);
+        return accountService.get(accountId);
     }
 
     @Override
     public Account deposit(Long accountId, BigDecimal depositAmt) {
         return accountService.deposit(accountId, depositAmt);
     }
+
+    @Override
+    public Account withdraw(Long accountId, BigDecimal withdrawAmt) {
+        return accountService.withdraw(accountId, withdrawAmt);
+    }
+
 }

@@ -21,4 +21,7 @@ public interface AccountAPI {
     Account deposit(@JsonRpcParam("accountID") Long accountId,
                     @JsonRpcParam("depositAmount")BigDecimal depositAmt);
 
+    Account withdraw(@JsonRpcParam("accountID") Long accountId,
+                    @JsonRpcParam("depositAmount")BigDecimal withdrawAmt);
+
 }
