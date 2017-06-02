@@ -14,11 +14,18 @@ allprojects {
     group = 'me.antonle.alfastart'
 }
 
+
+
 subprojects {
 
 	apply plugin: 'java'
 	apply plugin: 'groovy'
-    apply plugin: 'org.springframework.boot'
+
+    configure(allprojects - project(':common')) {
+        println "applying spring boot plugin to $project"
+        apply plugin: 'org.springframework.boot'
+
+    }
 
     sourceCompatibility = 1.8
 	targetCompatibility = 1.8
@@ -39,3 +46,4 @@ subprojects {
 		testCompile('org.spockframework:spock-spring:1.0-groovy-2.4')
 	}
 }
+

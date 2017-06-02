@@ -1,6 +1,6 @@
 version '0.0.1'
 
 dependencies {
-    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.0.12.Final'
 //    testCompile group: 'junit', name: 'junit', version: '4.12'
 }

@@ -1,5 +1,6 @@
 package me.antonle.alfastart.accounts.service;
 
+import me.antonle.alfastart.common.domain.Ccy;
 import me.antonle.alfastart.common.entity.Account;
 import me.antonle.alfastart.accounts.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,15 @@ public class AccountService {
 
     public Account get(Long accountId) {
         return accountRepository.findOne(accountId);
+    }
+
+    @Transactional
+    public Account create(String accountName, Ccy ccy) {
+        Account account = new Account();
+        account.setName(accountName);
+        account.setCcy(ccy);
+        account.setBalance(BigDecimal.ZERO);
+        return accountRepository.save(account);
     }
 
     @Transactional

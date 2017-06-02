@@ -23,11 +23,7 @@ public class AccountController implements AccountAPI {
 
     @Override
     public Account create(String accountName, Ccy ccy) {
-        Account account = new Account();
-        account.setName(accountName);
-        account.setCcy(ccy);
-        account.setBalance(BigDecimal.ZERO);
-        return accountRepository.save(account);
+        return accountService.create(accountName, ccy);
     }
 
     @Override
