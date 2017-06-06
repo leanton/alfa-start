@@ -2,6 +2,7 @@ package me.antonle.alfastart.rates.controller;
 
 import com.googlecode.jsonrpc4j.spring.AutoJsonRpcServiceImpl;
 import me.antonle.alfastart.common.api.RateAPI;
+import me.antonle.alfastart.common.domain.Ccy;
 import me.antonle.alfastart.rates.service.RateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,8 +17,8 @@ public class RateController implements RateAPI {
     private RateService rateService;
 
     @Override
-    public BigDecimal getRate(String fromCcy, String toCcy) {
-        return BigDecimal.ONE;
+    public BigDecimal getRate(Ccy fromCcy, Ccy toCcy) {
+        return rateService.getRate(fromCcy, toCcy);
     }
 
 }

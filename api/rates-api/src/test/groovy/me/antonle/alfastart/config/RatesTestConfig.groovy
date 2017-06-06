@@ -17,7 +17,7 @@ class RatesTestConfig {
     @Value('${local.server.port}')
     int port
 
-    @Bean(name = "accountEndpoint")
+    @Bean(name = "rateEndpoint")
     JsonRpcHttpClient jsonRpcHttpClient() {
         URL url = null
         //You can add authentication headers etc to this map
@@ -30,8 +30,8 @@ class RatesTestConfig {
         return new JsonRpcHttpClient(url, map)
     }
 
-    @Bean(name = "accountAPI")
-    RateAPI accountClientRPC(@Qualifier("accountEndpoint") JsonRpcHttpClient jsonRpcHttpClient) {
+    @Bean(name = "rateAPI")
+    RateAPI rateClientRPC(@Qualifier("rateEndpoint") JsonRpcHttpClient jsonRpcHttpClient) {
         return ProxyUtil.createClientProxy(getClass().getClassLoader(), RateAPI.class, jsonRpcHttpClient)
     }
 
